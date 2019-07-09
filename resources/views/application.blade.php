@@ -25,6 +25,5 @@
 
     <!-- <script src="js/app.js"></script> -->
     <script src="{{ asset(mix('js/app.js')) }}"></script>
-
   </body>
 </html>

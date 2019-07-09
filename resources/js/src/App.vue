@@ -31,6 +31,9 @@ export default {
     mounted() {
         this.toggleClassInBody(themeConfig.theme)
     },
+    beforeCreate(){
+        this.$store.dispatch('loginUser');
+    }
    
 }
 </script>

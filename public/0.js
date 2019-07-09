@@ -263,6 +263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.common.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 //
 //
 //
@@ -394,15 +396,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -416,6 +410,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       navbarSearchAndPinList: this.$store.state.navbarSearchAndPinList,
       searchQuery: '',
       showFullSearch: false,
@@ -470,6 +465,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    // login user
+    me: function me() {
+      return this.$store.getters.me;
+    },
     // HELPER
     sidebarWidth: function sidebarWidth() {
       return this.$store.state.sidebarWidth;
@@ -506,6 +505,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    logout: function logout() {
+      document.getElementById('logout-form').submit();
+    },
     showSidebar: function showSidebar() {
       this.$store.commit('TOGGLE_IS_SIDEBAR_ACTIVE', true);
     },
@@ -2184,10 +2186,8 @@ var render = function() {
                   { staticClass: "text-right leading-tight hidden sm:block" },
                   [
                     _c("p", { staticClass: "font-semibold" }, [
-                      _vm._v("John Doe")
-                    ]),
-                    _vm._v(" "),
-                    _c("small", [_vm._v("Available")])
+                      _vm._v(_vm._s(_vm.me.name))
+                    ])
                   ]
                 ),
                 _vm._v(" "),
@@ -2332,7 +2332,8 @@ var render = function() {
                                   "flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white",
                                 on: {
                                   click: function($event) {
-                                    return _vm.$router.push("/pages/login")
+                                    $event.preventDefault()
+                                    return _vm.logout($event)
                                   }
                                 }
                               },
@@ -2360,6 +2361,20 @@ var render = function() {
                 )
               ],
               1
+            ),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                staticStyle: { display: "none" },
+                attrs: { id: "logout-form", action: "logout", method: "POST" }
+              },
+              [
+                _c("input", {
+                  attrs: { type: "hidden", name: "_token" },
+                  domProps: { value: _vm.csrf }
+                })
+              ]
             )
           ],
           2

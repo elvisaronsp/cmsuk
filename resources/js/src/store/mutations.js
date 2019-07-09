@@ -7,10 +7,6 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 // Toggle loading
-
-
-
-
 const mutations = {
     TOGGLE_LOADING(state) {
         state.isLoading = !state.isLoading

@@ -7,7 +7,8 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 // Create an Instance
 const instance = axios.create({
     // change this url to your api
-    baseURL: '//cmsuk.herokuapp.com/',
+    baseURL: '//localhost:3000/',
+    // baseURL: '//cmsuk.herokuapp.com/',
 
     // any other headers you want to include
     headers: {
@@ -26,9 +27,9 @@ instance.interceptors.response.use(function (response) {
         // that falls out of the range of 2xx
 
         // redirect to root if un authenticated
-        // if(error.response.status === 401) {
-        //     window.location = '/login';
-        // }
+        if(error.response.status === 401) {
+            window.location = '/login';
+        }
     } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

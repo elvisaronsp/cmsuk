@@ -27,6 +27,11 @@ const router = new Router({
             name: 'account',
             component: () => import('./views/Account.vue'),
           },
+          {
+            path: '/profile',
+            name: 'profile',
+            component: () => import('./views/pages/Profile.vue'),
+          },
         ],
       },
       {

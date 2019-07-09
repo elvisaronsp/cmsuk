@@ -7,16 +7,9 @@
   Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-// Get authenticated user
-export const me = state => state.me
-
-
 
 const getters = {
-
-	// COMPONENT
-		// vx-autosuggest
-	// starredPages: state => state.navbarSearchAndPinList.data.filter((page) => page.highlightAction),
+  me: state => state.me
 }
 
 export default getters
