@@ -7,7 +7,7 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 // Create an Instance
 const instance = axios.create({
     // change this url to your api
-    baseURL: '//localhost:3000/',
+    baseURL: '//cmsuk.herokuapp.com/',
 
     // any other headers you want to include
     headers: {
